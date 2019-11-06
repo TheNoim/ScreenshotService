@@ -42,10 +42,10 @@ export class AppService implements OnModuleInit {
     params: ScreenshotParams,
   ): Promise<[Readable, number]> {
     const { url, ...browserlessOptions } = params;
-    const buffer: Buffer = await this.browserless.screenshot(
-      url,
-      browserlessOptions,
-    );
+    const buffer: Buffer = await this.browserless.screenshot(url, {
+      ...browserlessOptions,
+      adblock: false,
+    });
     const stream = new Readable();
 
     stream.push(buffer);
