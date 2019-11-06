@@ -31,7 +31,6 @@ export class AppService implements OnModuleInit {
           '--prerender-from-omnibox=disabled',
           '--disable-dev-shm-usage',
           '--headless',
-          '--disable-gpu',
         ],
       });
     } else {
