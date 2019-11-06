@@ -15,7 +15,12 @@ export class AppService implements OnModuleInit {
     if (process.env.DOCKER) {
       this.browserless = Browserless({
         executablePath: '/usr/bin/chromium-browser',
-        args: ['--disable-dev-shm-usage'],
+        args: [
+          '--disable-dev-shm-usage',
+          '--no-sandbox',
+          '--headless',
+          '--disable-gpu',
+        ],
       });
     } else {
       this.browserless = Browserless();
