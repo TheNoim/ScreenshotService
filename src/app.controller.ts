@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   Res,
@@ -43,5 +44,19 @@ export class AppController {
     });
 
     stream.pipe(res);
+  }
+
+  @Get('devices/:name')
+  getDeviceByName(@Param('name') name: string) {
+    if (!name || name === '') {
+      return this.listDevices();
+    }
+
+    return this.appService.getDevice(name);
+  }
+
+  @Get('devices')
+  listDevices() {
+    return this.appService.getDevices();
   }
 }

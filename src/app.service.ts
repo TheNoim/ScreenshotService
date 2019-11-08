@@ -53,4 +53,20 @@ export class AppService implements OnModuleInit {
 
     return [stream, buffer.length];
   }
+
+  public getDevices(): any[] {
+    return this.browserless.devices;
+  }
+
+  public getDevice(name: string) {
+    return this.getDevices().reduce((lastValue, value) => {
+      if (lastValue !== false) {
+        return lastValue;
+      }
+      if (value.name === name) {
+        return value;
+      }
+      return false;
+    }, false);
+  }
 }
